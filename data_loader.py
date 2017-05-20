@@ -36,7 +36,7 @@ api = vk.API(session)
 friends = api.friends.get(user_id=user_id, fields='sex, bdate')
 interesting_friends = [person for person in friends if age(person) > 0]
 
-file = open('vk', 'w')
+file = open('vk_data', 'w')
 
 file.write(str(len(interesting_friends)) + '\n')
 
