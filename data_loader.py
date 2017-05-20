@@ -32,20 +32,20 @@ def write_photo_urls_in_file(person, file):
 
 session = vk.Session(access_token=access_token)
 api = vk.API(session)
+
 friends = api.friends.get(user_id=user_id, fields='sex, bdate')
+interesting_friends = [person for person in friends if age(person) > 0]
 
 file = open('vk', 'w')
 
-counter = 0
+file.write(str(len(interesting_friends)) + '\n')
+
 for person in friends:
     person_age = age(person)
 
     if person_age != 0:
         file.write(str(person_age) + '\n')
         write_photo_urls_in_file(person, file)
-        counter += 1
-        print(counter)
         time.sleep(3)
 
 file.close()
-
